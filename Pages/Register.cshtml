@@ -1,0 +1,45 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="container form-page">
+    <div class="form-wrap">
+        <h1>Регистрация</h1>
+        <p class="form-sub">Создайте новый аккаунт</p>
+
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="NewUser.FullName">ФИО</label>
+                <input asp-for="NewUser.FullName" placeholder="Иванов Иван" />
+                <span asp-validation-for="NewUser.FullName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NewUser.Login">Логин</label>
+                <input asp-for="NewUser.Login" placeholder="Придумайте логин" />
+                <span asp-validation-for="NewUser.Login" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NewUser.Email">Email</label>
+                <input asp-for="NewUser.Email" type="email" placeholder="example@mail.com" />
+                <span asp-validation-for="NewUser.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NewUser.Password">Пароль</label>
+                <input asp-for="NewUser.Password" type="password" placeholder="Минимум 4 символа" />
+                <span asp-validation-for="NewUser.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-actions" style="flex-direction: column; gap: 15px;">
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Зарегистрироваться</button>
+                <a asp-page="/Login" class="btn btn-outline" style="width: 100%;">Уже есть аккаунт (Войти)</a>
+            </div>
+        </form>
+    </div>
+</div>
