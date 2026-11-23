@@ -21,14 +21,13 @@ public class ProfileModel : PageModel
     public IActionResult OnGet()
     {
         UserLogin = HttpContext.Session.GetString("UserLogin");
-
         if (UserLogin == null) return RedirectToPage("/Login");
 
         var user = _context.Users.FirstOrDefault(u => u.Login == UserLogin);
         if (user != null)
         {
-            UserName = string.IsNullOrEmpty(user.FullName) ? user.Login : user.FullName;
-            UserEmail = string.IsNullOrEmpty(user.Email) ? "Не указан" : user.Email;
+            UserName = user.FullName;
+            UserEmail = user.Email;
             RegisteredAt = user.RegisteredAt;
         }
 
