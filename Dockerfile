@@ -9,4 +9,4 @@ WORKDIR /app
 COPY --from=build /app/publish .
 ENV ASPNETCORE_URLS=http://0.0.0.0:10000
 EXPOSE 10000
-ENTRYPOINT ["dotnet", "wt_lab12_12auth_validation_pravotorova.dll"]
+ENTRYPOINT ["dotnet", "wt-lab12-12auth-validation-pravotorova.dll"]
