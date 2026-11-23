@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace wt_lab8_8razor_postgresql_pravotorova.Pages
+namespace wt_lab12_12auth_validation_pravotorova.Pages
 {
     public class PrivacyModel : PageModel
     {

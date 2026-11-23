@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
-using wt_lab8_8razor_postgresql_pravotorova.Data;
+using wt_lab12_12auth_validation_pravotorova.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Настройка подключения (локально и на Render)
+// === 1. НАСТРОЙКА ПОДКЛЮЧЕНИЯ К БД ===
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 
+// Если мы на Render, используем DATABASE_URL
+var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 if (!string.IsNullOrWhiteSpace(databaseUrl))
 {
     var uri = new Uri(databaseUrl);
@@ -19,17 +20,21 @@ if (!string.IsNullOrWhiteSpace(databaseUrl))
 }
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+
+// === 2. РЕГИСТРАЦИЯ СЕРВИСОВ (СТРОГО ДО BUILD) ===
+builder.Services.AddSession();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Автоматическое применение миграций при запуске
+// === 3. МИГРАЦИИ ===
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }
 
+// === 4. MIDDLEWARE (СТРОГО ПО ПОРЯДКУ) ===
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -37,8 +42,12 @@ if (!app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 app.UseRouting();
+
+app.UseSession(); // После UseRouting, до Authorization
+
 app.UseAuthorization();
 app.MapRazorPages();
 
+// === 5. ЗАПУСК ===
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 app.Run($"http://0.0.0.0:{port}");

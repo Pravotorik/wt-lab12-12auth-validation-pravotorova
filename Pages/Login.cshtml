@@ -1,0 +1,33 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Вход";
+}
+
+<div class="container form-page">
+    <div class="form-wrap">
+        <h1>Вход</h1>
+        <p class="form-sub">Войдите в личный кабинет</p>
+
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Login">Логин</label>
+                <input asp-for="Login" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Пароль</label>
+                <input asp-for="Password" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-actions" style="flex-direction: column; gap: 10px;">
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Войти</button>
+                <a asp-page="/Register" class="btn btn-outline" style="width: 100%;">У меня нет аккаунта</a>
+            </div>
+        </form>
+    </div>
+</div>

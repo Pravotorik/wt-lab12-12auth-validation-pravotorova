@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace wt_lab8_8razor_postgresql_pravotorova.Models;
+namespace wt_lab12_12auth_validation_pravotorova.Models;
 
 public class Room
 {

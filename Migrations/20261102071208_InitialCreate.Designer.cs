@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using wt_lab8_8razor_postgresql_pravotorova.Data;
+using wt_lab12_12auth_validation_pravotorova.Data;
 
 #nullable disable
 
-namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
+namespace wt_lab12_12auth_validation_pravotorova.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20261102071208_InitialCreate")]
@@ -25,7 +25,7 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Amenity", b =>
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.Amenity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
                     b.ToTable("Amenities");
                 });
 
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Guest", b =>
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.Guest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -95,7 +95,7 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
                         });
                 });
 
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Reservation", b =>
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.Reservation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -131,7 +131,7 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
                     b.ToTable("Reservations");
                 });
 
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Room", b =>
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.Room", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -204,15 +204,15 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
                         });
                 });
 
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Reservation", b =>
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.Reservation", b =>
                 {
-                    b.HasOne("wt_lab8_8razor_postgresql_pravotorova.Models.Guest", "Guest")
+                    b.HasOne("wt_lab12_12auth_validation_pravotorova.Models.Guest", "Guest")
                         .WithMany()
                         .HasForeignKey("GuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("wt_lab8_8razor_postgresql_pravotorova.Models.Room", "Room")
+                    b.HasOne("wt_lab12_12auth_validation_pravotorova.Models.Room", "Room")
                         .WithMany()
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)

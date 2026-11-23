@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using wt_lab8_8razor_postgresql_pravotorova.Data;
-using wt_lab8_8razor_postgresql_pravotorova.Models;
+using wt_lab12_12auth_validation_pravotorova.Data;
+using wt_lab12_12auth_validation_pravotorova.Models;
 
-namespace wt_lab8_8razor_postgresql_pravotorova.Pages.Rooms;
+namespace wt_lab12_12auth_validation_pravotorova.Pages.Rooms;
 
 public class DeleteModel : PageModel
 {

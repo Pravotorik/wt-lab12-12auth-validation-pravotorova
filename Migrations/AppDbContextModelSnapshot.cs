@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using wt_lab8_8razor_postgresql_pravotorova.Data;
+using wt_lab12_12auth_validation_pravotorova.Data;
 
 #nullable disable
 
-namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
+namespace wt_lab12_12auth_validation_pravotorova.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -22,24 +22,7 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Amenity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Amenities");
-                });
-
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Guest", b =>
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.Guest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,38 +53,9 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Guests");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AvatarUrl = "https://i.pravatar.cc/150?img=47",
-                            Country = "Беларусь",
-                            Email = "anna@mail.com",
-                            FullName = "Анна Смирнова",
-                            Phone = "+375 29 111-22-33"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AvatarUrl = "https://i.pravatar.cc/150?img=12",
-                            Country = "Россия",
-                            Email = "ivan@mail.com",
-                            FullName = "Иван Петров",
-                            Phone = "+375 29 444-55-66"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AvatarUrl = "https://i.pravatar.cc/150?img=32",
-                            Country = "Польша",
-                            Email = "maria@mail.com",
-                            FullName = "Мария Ковалёва",
-                            Phone = "+375 29 777-88-99"
-                        });
                 });
 
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Reservation", b =>
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.Reservation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -137,7 +91,7 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
                     b.ToTable("Reservations");
                 });
 
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Room", b =>
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.Room", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -181,7 +135,7 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
                             Capacity = 2,
                             Category = "Стандарт",
                             Description = "Уютный номер",
-                            ImageUrl = "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800",
+                            ImageUrl = "",
                             IsAvailable = true,
                             Number = "101",
                             PricePerNight = 3500m
@@ -192,33 +146,58 @@ namespace wt_lab8_8razor_postgresql_pravotorova.Migrations
                             Capacity = 2,
                             Category = "Люкс",
                             Description = "С джакузи",
-                            ImageUrl = "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800",
+                            ImageUrl = "",
                             IsAvailable = true,
                             Number = "102",
                             PricePerNight = 9000m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Capacity = 3,
-                            Category = "Комфорт",
-                            Description = "Семейный номер",
-                            ImageUrl = "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800",
-                            IsAvailable = false,
-                            Number = "201",
-                            PricePerNight = 5200m
                         });
                 });
 
-            modelBuilder.Entity("wt_lab8_8razor_postgresql_pravotorova.Models.Reservation", b =>
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.User", b =>
                 {
-                    b.HasOne("wt_lab8_8razor_postgresql_pravotorova.Models.Guest", "Guest")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("RegisteredAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("wt_lab12_12auth_validation_pravotorova.Models.Reservation", b =>
+                {
+                    b.HasOne("wt_lab12_12auth_validation_pravotorova.Models.Guest", "Guest")
                         .WithMany()
                         .HasForeignKey("GuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("wt_lab8_8razor_postgresql_pravotorova.Models.Room", "Room")
+                    b.HasOne("wt_lab12_12auth_validation_pravotorova.Models.Room", "Room")
                         .WithMany()
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)

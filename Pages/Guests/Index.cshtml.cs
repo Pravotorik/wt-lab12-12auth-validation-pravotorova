@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using wt_lab8_8razor_postgresql_pravotorova.Data;
-using wt_lab8_8razor_postgresql_pravotorova.Models;
+using wt_lab12_12auth_validation_pravotorova.Data;
+using wt_lab12_12auth_validation_pravotorova.Models;
 
-namespace wt_lab8_8razor_postgresql_pravotorova.Pages.Guests;
+namespace wt_lab12_12auth_validation_pravotorova.Pages.Guests;
 
 public class IndexModel : PageModel
 {

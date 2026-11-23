@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>wt_lab8_8razor_postgresql_pravotorova</RootNamespace>
+    <RootNamespace>wt-lab12-12auth-validation-pravotorova</RootNamespace>
     <UserSecretsId>da3e062e-0858-42e9-a255-6e322672602a</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>

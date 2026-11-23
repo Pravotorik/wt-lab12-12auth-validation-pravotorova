@@ -1,0 +1,27 @@
+@page
+@model ProfileModel
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+
+<div class="container page-container">
+    <div class="profile-card" style="max-width: 600px; margin: 0 auto; background: #fff; border-radius: 24px; padding: 40px; box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15); text-align: center;">
+        
+        <div style="width: 100px; height: 100px; background: #E91E63; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: bold; margin: 0 auto 20px;">
+            @(Model.UserName?.Substring(0, 1).ToUpper())
+        </div>
+
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 32px;">@Model.UserName</h1>
+        <p style="color: #666; margin-bottom: 30px;">Вы успешно вошли в систему</p>
+
+        <div style="background: #fdf4f6; border-radius: 16px; padding: 20px; text-align: left; margin-bottom: 30px;">
+            <p><strong>Логин:</strong> @Model.UserLogin</p>
+            <p><strong>Email:</strong> @Model.UserEmail</p>
+            <p><strong>Дата регистрации:</strong> @Model.RegisteredAt.ToString("dd.MM.yyyy")</p>
+        </div>
+
+        <form method="post">
+            <button type="submit" class="btn btn-danger" style="width: 100%;">Выйти из аккаунта</button>
+        </form>
+    </div>
+</div>
